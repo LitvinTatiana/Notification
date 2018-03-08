@@ -9,7 +9,7 @@ public class Main {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String n = reader.readLine();
 
-        int count = Integer.parseInt(n);
+        int notificationCount = Integer.parseInt(n);
 
         Phone phone = new Phone(100);
 
@@ -18,7 +18,7 @@ public class Main {
         Notification notification2 = new Notification(5, "Бррр");
         Notification notification3 = new Notification(5, "Low battery");
 
-        Controller.dependency(count, phone, notification, notification1, notification2, notification3);
+        Controller.dependency(notificationCount, phone, notification, notification1, notification2, notification3);
 
     }
 
