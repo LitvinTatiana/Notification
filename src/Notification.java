@@ -1,5 +1,6 @@
 public class Notification {
     private int expenditure;
+    // TODO: message, messageText
     private String text;
 
     public Notification(int expenditure, String text) {
