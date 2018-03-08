@@ -1,7 +1,7 @@
 public class Controller {
 
-    static void dependency(int count, Phone phone, Notification... notification){
-     while (count > 0 && phone.getBattery() >= 0) {
+    static void dependency(int notificationCount, Phone phone, Notification... notification){
+     while (notificationCount > 0 && phone.getBattery() >= 0) {
 
         if (phone.getBattery() > 30) {
             System.out.println(notification[1].getText());
@@ -20,7 +20,7 @@ public class Controller {
             System.out.println(notification[0].getText());
             phone.setBattery(phone.getBattery() - notification[0].getExpenditure());
         }
-        count--;
+        notificationCount--;
         }
     }
 }
