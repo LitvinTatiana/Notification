@@ -8,6 +8,9 @@ public class NotificationCall implements NotificationService {
     public void issueNotification(int notificationCount, Phone phone, Notification... notification){
         while (notificationCount > 0 && phone.getBatteryCharge() >= 0) {
 
+            // TODO: я до сих пор вижу магические цифры. Что за 30?
+            // Читая конкретно эту функцию, я пониятия не имею, что пришло в параметрах и волновать меня это не должно
+            // Я не должен лезть туда, где вызывалась эта функция, чтобы понять под каким индексом что лежит
             if (phone.getBatteryCharge() > 30) {
                 System.out.println(notification[1].getMessageText());
                 phone.setBatteryCharge(phone.getBatteryCharge() - notification[1].getExpenditure());
@@ -24,6 +27,10 @@ public class NotificationCall implements NotificationService {
                 System.out.println(notification[0].getMessageText());
                 phone.setBatteryCharge(phone.getBatteryCharge() - notification[0].getExpenditure());
             }
+
+            // TODO: ОЧень много повторяющегося кода. IF-ки идентичны. Сверху можно создать переменную
+            // notifText + batteryUsage, В ифках её проинициализировать, а после всех ифов - вызывать операции
+            // "else if" не переносится на другую строку
 
             notificationCount--;
         }

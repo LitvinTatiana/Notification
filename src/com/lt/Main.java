@@ -6,7 +6,11 @@ import com.lt.phone.Phone;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
+//TODO: Название коммитов должны быть конструктивны. История гита должна читаться как книга
+// Мы немного изменим работу с гитхабом, потом расскажу.
 public class Main {
 
     private static final int BATTERY_CHARGE = 100,
@@ -23,6 +27,7 @@ public class Main {
 
     public static void main(String [] args) {
 
+        // TODO: Убрать лишний код из мейна, должны лишь быть строки запуска того или иного функционала
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String n = null;
         try {
@@ -42,6 +47,8 @@ public class Main {
 
         NotificationCall notificationCall = new NotificationCall();
 
+        // TODO: в коллекцию
+        List<Notification> notificationList = new ArrayList<>();
         notificationCall.issueNotification(notificationCount, phone, emptyBatteryNotification, fullBatteryNotification, saveBatteryNotification, lowBatteryNotification);
 
     }

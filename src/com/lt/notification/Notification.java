@@ -16,5 +16,5 @@ public class Notification {
     String getMessageText(){
         return message;
     }
-
+    // TODO здесь полпуск строки излишен. По другим файлам так же
 }
