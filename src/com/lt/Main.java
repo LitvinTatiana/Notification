@@ -2,10 +2,8 @@ package com.lt;
 
 import com.lt.notification.*;
 import com.lt.phone.Phone;
+import com.lt.print.PrintCall;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,30 +11,26 @@ import java.util.List;
 // Мы немного изменим работу с гитхабом, потом расскажу.
 public class Main {
 
-    private static final int BATTERY_CHARGE = 100,
-            EXPENDITURE_EMPTY_BATTERY_NOTIFICATION = 5,
-            EXPENDITURE_FULL_BATTERY_NOTIFICATION = 5,
-            EXPENDITURE_SAVE_BATTERY_NOTIFICATION = 5,
-            EXPENDITURE_LOW_BATTERY_NOTIFICATION = 5;
+    private static final int BATTERY_CHARGE = 100;
+    private static final int EXPENDITURE_EMPTY_BATTERY_NOTIFICATION = 5;
+    private static final int EXPENDITURE_FULL_BATTERY_NOTIFICATION = 5;
+    private static final int EXPENDITURE_SAVE_BATTERY_NOTIFICATION = 5;
+    private static final int EXPENDITURE_LOW_BATTERY_NOTIFICATION = 5;
 
-    public static final String
-            MESSAGE_EMPTY_BATTERY_NOTIFICATION = "Notifications disabled",
-            MESSAGE_FULL_BATTERY_NOTIFICATION = "Бррр-бррр",
-            MESSAGE_SAVE_BATTERY_NOTIFICATION = "Бррр",
-            MESSAGE_LOW_BATTERY_NOTIFICATION = "Low battery";
+    private static final String MESSAGE_EMPTY_BATTERY_NOTIFICATION = "Notifications disabled";
+    private static final String MESSAGE_FULL_BATTERY_NOTIFICATION = "Бррр-бррр";
+    private static final String MESSAGE_SAVE_BATTERY_NOTIFICATION = "Бррр";
+    private static final String MESSAGE_LOW_BATTERY_NOTIFICATION = "Low battery";
 
     public static void main(String [] args) {
 
         // TODO: Убрать лишний код из мейна, должны лишь быть строки запуска того или иного функционала
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String n = null;
-        try {
-           n = reader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        int notificationCount = Integer.parseInt(n);
+        NotificationCall notificationCall = new NotificationCall();
+
+        PrintCall printCall = new PrintCall();
+
+        int notificationCount = printCall.enterValue();
 
         Phone phone = new Phone(BATTERY_CHARGE);
 
@@ -45,11 +39,15 @@ public class Main {
         Notification saveBatteryNotification = new Notification(EXPENDITURE_SAVE_BATTERY_NOTIFICATION, MESSAGE_SAVE_BATTERY_NOTIFICATION);
         Notification lowBatteryNotification = new Notification(EXPENDITURE_LOW_BATTERY_NOTIFICATION, MESSAGE_LOW_BATTERY_NOTIFICATION);
 
-        NotificationCall notificationCall = new NotificationCall();
-
         // TODO: в коллекцию
         List<Notification> notificationList = new ArrayList<>();
-        notificationCall.issueNotification(notificationCount, phone, emptyBatteryNotification, fullBatteryNotification, saveBatteryNotification, lowBatteryNotification);
+
+        notificationList.add(emptyBatteryNotification);
+        notificationList.add(fullBatteryNotification);
+        notificationList.add(saveBatteryNotification);
+        notificationList.add(lowBatteryNotification);
+
+        notificationCall.issueNotification(notificationCount, phone, notificationList);
 
     }
 
