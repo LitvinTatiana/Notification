@@ -17,6 +17,7 @@ public class Main {
     private static final int EXPENDITURE_SAVE_BATTERY_NOTIFICATION = 5;
     private static final int EXPENDITURE_LOW_BATTERY_NOTIFICATION = 5;
 
+    // TODO: Эти константы не имеют никакого смыслового значения для класса main. Унести их в нужный класс.
     private static final String MESSAGE_EMPTY_BATTERY_NOTIFICATION = "Notifications disabled";
     private static final String MESSAGE_FULL_BATTERY_NOTIFICATION = "Бррр-бррр";
     private static final String MESSAGE_SAVE_BATTERY_NOTIFICATION = "Бррр";
@@ -51,4 +52,4 @@ public class Main {
 
     }
 
-}
+} // TODO: пропска строки между последней скобкой метода и класса быть не должно

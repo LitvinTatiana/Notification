@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 
 public class PrintCall implements PrintService {
 
+    // TODO: Название метода "Введите значение", а куда вводить - не понятно. "initInputListener()"
     @Override
     public int enterValue() {
 
