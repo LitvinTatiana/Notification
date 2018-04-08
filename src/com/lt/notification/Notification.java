@@ -1,10 +1,13 @@
 package com.lt.notification;
 
+import org.jetbrains.annotations.NotNull;
+
 public class Notification {
     private int expenditure;
     private String message;
 
-    public Notification(int expenditure, String messageText) {
+    @NotNull
+    public Notification(int expenditure, @NotNull String messageText) {
         this.expenditure = expenditure;
         this.message = messageText;
     }
@@ -13,8 +16,8 @@ public class Notification {
         return expenditure;
     }
 
+    @NotNull
     String getMessageText(){
         return message;
     }
-    // TODO здесь полпуск строки излишен. По другим файлам так же
 }

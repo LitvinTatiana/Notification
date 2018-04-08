@@ -1,55 +1,30 @@
 package com.lt;
 
-import com.lt.notification.*;
 import com.lt.phone.Phone;
-import com.lt.print.PrintCall;
+import com.lt.print.PrintService;
 
-import java.util.ArrayList;
-import java.util.List;
-
-//TODO: Название коммитов должны быть конструктивны. История гита должна читаться как книга
-// Мы немного изменим работу с гитхабом, потом расскажу.
 public class Main {
-
-    private static final int BATTERY_CHARGE = 100;
-    private static final int EXPENDITURE_EMPTY_BATTERY_NOTIFICATION = 5;
-    private static final int EXPENDITURE_FULL_BATTERY_NOTIFICATION = 5;
-    private static final int EXPENDITURE_SAVE_BATTERY_NOTIFICATION = 5;
-    private static final int EXPENDITURE_LOW_BATTERY_NOTIFICATION = 5;
-
-    // TODO: Эти константы не имеют никакого смыслового значения для класса main. Унести их в нужный класс.
-    private static final String MESSAGE_EMPTY_BATTERY_NOTIFICATION = "Notifications disabled";
-    private static final String MESSAGE_FULL_BATTERY_NOTIFICATION = "Бррр-бррр";
-    private static final String MESSAGE_SAVE_BATTERY_NOTIFICATION = "Бррр";
-    private static final String MESSAGE_LOW_BATTERY_NOTIFICATION = "Low battery";
-
+    public static int enteredNumber;
     public static void main(String [] args) {
-
-        // TODO: Убрать лишний код из мейна, должны лишь быть строки запуска того или иного функционала
-
-        NotificationCall notificationCall = new NotificationCall();
-
-        PrintCall printCall = new PrintCall();
-
-        int notificationCount = printCall.enterValue();
-
-        Phone phone = new Phone(BATTERY_CHARGE);
-
-        Notification emptyBatteryNotification = new Notification(EXPENDITURE_EMPTY_BATTERY_NOTIFICATION, MESSAGE_EMPTY_BATTERY_NOTIFICATION);
-        Notification fullBatteryNotification = new Notification(EXPENDITURE_FULL_BATTERY_NOTIFICATION, MESSAGE_FULL_BATTERY_NOTIFICATION);
-        Notification saveBatteryNotification = new Notification(EXPENDITURE_SAVE_BATTERY_NOTIFICATION, MESSAGE_SAVE_BATTERY_NOTIFICATION);
-        Notification lowBatteryNotification = new Notification(EXPENDITURE_LOW_BATTERY_NOTIFICATION, MESSAGE_LOW_BATTERY_NOTIFICATION);
-
-        // TODO: в коллекцию
-        List<Notification> notificationList = new ArrayList<>();
-
-        notificationList.add(emptyBatteryNotification);
-        notificationList.add(fullBatteryNotification);
-        notificationList.add(saveBatteryNotification);
-        notificationList.add(lowBatteryNotification);
-
-        notificationCall.issueNotification(notificationCount, phone, notificationList);
-
+        initInputKeyboardListener();
     }
 
-} // TODO: пропска строки между последней скобкой метода и класса быть не должно
+    private static void initInputKeyboardListener(){
+        boolean condition = true;
+
+        while (condition == true){
+            PrintService initInputKeyboard = new PrintService();
+            String str = initInputKeyboard.initInputListener();
+            if (str.equals("break")){
+                condition = false;
+            } else if (str == null || !initInputKeyboard.isNumber(str)){
+                throw new NumberFormatException("Invalid input ");
+            } else {
+                System.out.println("notifications amount = " + str);
+                enteredNumber = Integer.parseInt(str);
+                Phone phone = new Phone();
+                phone.receiveMessage();
+            }
+        }
+    }
+}

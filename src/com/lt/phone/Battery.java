@@ -1,9 +1,20 @@
 package com.lt.phone;
 
-public interface Battery {
+public class Battery implements BatteryBehavior {
 
-    int getBatteryCharge();
+    private int batteryCharge;
 
-    void setBatteryCharge(int batteryCharge);
+    Battery(int batteryCharge) {
+        this.batteryCharge = batteryCharge;
+    }
 
+    @Override
+    public int getBatteryCharge() {
+        return batteryCharge;
+    }
+
+    @Override
+    public void setBatteryCharge(int batteryCharge) {
+        this.batteryCharge = batteryCharge;
+    }
 }
