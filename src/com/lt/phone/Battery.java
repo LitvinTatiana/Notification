@@ -4,7 +4,7 @@ public class Battery implements BatteryBehavior {
 
     private int batteryCharge;
 
-    Battery(int batteryCharge) {
+    public Battery(int batteryCharge) {
         this.batteryCharge = batteryCharge;
     }
 
